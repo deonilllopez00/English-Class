@@ -1,0 +1,531 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f5f8ff" />
+  <title> Private English Class | Teacher Angelo </title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      background: #f5f8ff;
+    }
+
+    .gradient-bg {
+      background: linear-gradient(135deg, #4361ee, #7357e8);
+    }
+
+    .class-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .class-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(51, 65, 130, 0.10);
+    }
+
+    .zoom-btn {
+      transition: all 0.2s ease;
+    }
+
+    .zoom-btn:hover {
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+
+<body class="min-h-screen text-slate-800">
+
+  <!-- HEADER -->
+  <header class="bg-white border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3" aria-label="Class Portal home">
+        <div class="gradient-bg text-white rounded-2xl w-12 h-12 flex items-center justify-center text-2xl">
+          📚
+        </div>
+        <div>
+          <h1 class="text-xl font-extrabold tracking-tight">Private English Class</h1>
+          <p class="text-xs text-slate-500">Learn • Practice • Grow</p>
+        </div>
+      </a>
+
+      <div class="hidden sm:flex items-center gap-2 text-sm text-slate-500">
+        <span class="w-2 h-2 rounded-full bg-green-500"></span>
+        Teacher Angelo
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-5 py-8 md:py-12">
+
+    <!-- HERO SECTION -->
+    <section class="gradient-bg rounded-3xl p-7 md:p-12 text-white shadow-lg relative overflow-hidden">
+      <div class="absolute -right-10 -top-16 w-64 h-64 rounded-full bg-white opacity-5"></div>
+      <div class="absolute right-24 -bottom-24 w-48 h-48 rounded-full bg-white opacity-10"></div>
+
+      <div class="relative z-10 grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <p class="text-blue-100 text-sm font-semibold uppercase tracking-widest mb-3">
+            Your learning space
+          </p>
+
+          <h2 class="text-3xl md:text-5xl font-extrabold leading-tight">
+            Welcome to<br />
+            Your Class Portal! 👋
+          </h2>
+
+          <p class="text-blue-100 mt-5 max-w-lg leading-relaxed">
+            Your next learning adventure starts here. Check your schedule,
+            join your live classes, and keep improving your English!
+          </p>
+
+          <a href="#schedule"
+             class="inline-flex items-center gap-2 mt-7 px-6 py-3 bg-white text-indigo-700 rounded-xl font-bold hover:bg-blue-50 transition">
+            View My Classes
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <!-- LIVE DATE AND TIME -->
+        <div class="bg-white/15 backdrop-blur rounded-2xl p-6 border border-white/20">
+          <p class="text-blue-100 text-sm font-medium">TODAY IS</p>
+          <p id="live-date" class="text-2xl md:text-3xl font-bold mt-2">
+            Loading date...
+          </p>
+
+          <div class="border-t border-white/20 my-5"></div>
+
+          <p class="text-blue-100 text-sm font-medium">CURRENT TIME</p>
+          <p id="live-time" class="text-4xl md:text-5xl font-extrabold mt-2 tabular-nums">
+            --:--:--
+          </p>
+
+          <p class="text-blue-100 text-xs mt-3">
+            Time shown in your browser's local time zone.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUICK INFO -->
+    <section class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
+      <div class="bg-white rounded-2xl p-5 border border-slate-100 flex items-center gap-4">
+        <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-2xl">
+          📅
+        </div>
+        <div>
+          <p class="text-sm text-slate-500">Scheduled Classes</p>
+          <p id="class-count" class="text-2xl font-extrabold">0</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl p-5 border border-slate-100 flex items-center gap-4">
+        <div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center text-2xl">
+          🎥
+        </div>
+        <div>
+          <p class="text-sm text-slate-500">Live Right Now</p>
+          <p id="live-count" class="text-2xl font-extrabold">0</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl p-5 border border-slate-100 flex items-center gap-4">
+        <div class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center text-2xl">
+          ✨
+        </div>
+        <div>
+          <p class="text-sm text-slate-500">Keep Learning</p>
+          <p class="text-lg font-extrabold">One step at a time!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLASS SCHEDULE -->
+    <section id="schedule" class="mt-12">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
+        <div>
+          <p class="text-indigo-600 font-bold text-sm">YOUR LEARNING PLAN</p>
+          <h2 class="text-2xl md:text-3xl font-extrabold mt-1">
+            My Class Schedule
+          </h2>
+          <p class="text-slate-500 mt-2">
+            Check your class details and join your lesson below.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <label for="filter-day" class="text-sm font-medium text-slate-600">
+            Filter:
+          </label>
+          <select id="filter-day"
+                  class="border border-slate-200 bg-white rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400">
+            <option value="All">All Classes</option>
+            <option value="Saturday">Saturday</option>
+            <option value="Sunday">Sunday</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- JavaScript inserts class cards here -->
+      <div id="class-list" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+      </div>
+
+      <div id="empty-state"
+           class="hidden bg-white rounded-2xl p-10 text-center border border-slate-100">
+        <p class="text-4xl mb-3">📭</p>
+        <h3 class="font-bold text-lg">No classes found</h3>
+        <p class="text-slate-500 text-sm mt-2">Try selecting another day.</p>
+      </div>
+    </section>
+
+    <!-- GENERAL ZOOM ACCESS -->
+    <section class="mt-12 bg-indigo-50 border border-indigo-100 rounded-3xl p-6 md:p-8">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div class="flex items-start gap-4">
+          <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-3xl shadow-sm">
+            🎥
+          </div>
+          <div>
+            <h2 class="text-xl font-extrabold">Ready for your lesson?</h2>
+            <p class="text-slate-600 text-sm mt-2 max-w-xl">
+              Check your schedule first, then use the Zoom button for your
+              specific class. Make sure your microphone and camera are ready!
+            </p>
+          </div>
+        </div>
+
+        <a href="https://us05web.zoom.us/j/7882170092?pwd=bHlTaFJnUTE4THFSaHoycHVpZERWUT09"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="zoom-btn inline-flex justify-center items-center gap-2 bg-indigo-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-indigo-700 whitespace-nowrap">
+          Join Zoom <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- STUDENT REMINDERS -->
+    <section class="mt-12">
+      <h2 class="text-2xl font-extrabold">A Few Friendly Reminders 💡</h2>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-5">
+        <div class="bg-white border border-slate-100 rounded-2xl p-5">
+          <p class="text-2xl mb-3">⏰</p>
+          <h3 class="font-bold">Be on Time</h3>
+          <p class="text-sm text-slate-500 mt-2">Join class a few minutes before it starts.</p>
+        </div>
+
+        <div class="bg-white border border-slate-100 rounded-2xl p-5">
+          <p class="text-2xl mb-3">🎤</p>
+          <h3 class="font-bold">Check Your Audio</h3>
+          <p class="text-sm text-slate-500 mt-2">Test your microphone and speakers.</p>
+        </div>
+
+        <div class="bg-white border border-slate-100 rounded-2xl p-5">
+          <p class="text-2xl mb-3">🙋</p>
+          <h3 class="font-bold">Participate</h3>
+          <p class="text-sm text-slate-500 mt-2">Ask questions and practice speaking English.</p>
+        </div>
+
+        <div class="bg-white border border-slate-100 rounded-2xl p-5">
+          <p class="text-2xl mb-3">💖</p>
+          <h3 class="font-bold">Believe in Yourself</h3>
+          <p class="text-sm text-slate-500 mt-2">Mistakes help you learn and grow!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEACHER INSTRUCTIONS -->
+    <section class="mt-12 bg-white border border-slate-200 rounded-3xl p-6 md:p-8">
+      <div class="flex items-start gap-3">
+        <div class="text-2xl">🛠️</div>
+        <div>
+          <h2 class="text-xl font-extrabold">Teacher's Editing Guide</h2>
+          <p class="text-slate-500 text-sm mt-2">
+            You can customize this portal by editing the JavaScript near the bottom of this file.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-6 space-y-5 text-sm text-slate-600">
+        <div>
+          <h3 class="font-bold text-slate-800">1. Change class information</h3>
+          <p class="mt-1">
+            Find the <code class="bg-slate-100 px-1 rounded">classes</code> array
+            in the JavaScript section. Edit the class name, instructor, day, subject, and time.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="font-bold text-slate-800">2. Add your real Zoom links</h3>
+          <p class="mt-1">
+            Replace <code class="bg-slate-100 px-1 rounded">https://zoom.us</code>
+            in each class's <code class="bg-slate-100 px-1 rounded">zoom</code> field
+            with the correct meeting URL.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="font-bold text-slate-800">3. Set the class date and time</h3>
+          <p class="mt-1">
+            Use the <code class="bg-slate-100 px-1 rounded">start</code> and
+            <code class="bg-slate-100 px-1 rounded">end</code> fields in
+            <code class="bg-slate-100 px-1 rounded">YYYY-MM-DDTHH:mm:ss</code>
+            format. These dates determine whether a class is Upcoming, Live Now, or Completed.
+            Enter times in the browser's local time zone.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="font-bold text-slate-800">4. Publish your portal</h3>
+          <p class="mt-1">
+            Save the file as <code class="bg-slate-100 px-1 rounded">index.html</code>.
+            Open it in your browser to preview it, or upload it to a static web host
+            to share it with your students.
+          </p>
+        </div>
+      </div>
+
+      <p class="mt-6 bg-amber-50 text-amber-800 rounded-xl p-4 text-sm">
+        <strong>Privacy tip:</strong> This is a front-end template. Anyone with access
+        to the page can view its schedule and Zoom links. Do not put private student
+        information or sensitive meeting details on a publicly accessible page.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-200 bg-white mt-12">
+    <div class="max-w-7xl mx-auto px-5 py-7 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="font-bold text-slate-700">📚 Class Portal</p>
+      <p class="text-sm text-slate-500">
+        Keep learning, keep growing, and keep shining! ✨
+      </p>
+      <p class="text-xs text-slate-400">
+        © <span id="year"></span> Class Portal
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    /*
+     * TEACHER SETTINGS
+     * -------------------------------------------------------
+     * Edit this array to add, remove, or update your classes.
+     *
+     * start format: 2026-10-31T20:00:00
+     *end format: 2026-10-31T20:30:00
+     * Times use the browser's local time zone.
+     * Use 24-hour time, e.g. 15:30:00 = 3:30 PM.
+     */
+
+    const classes = [
+      {
+        id: 1,
+        name: "Jasmine's English Class",
+        instructor: "Teacher Angelo",
+        day: "Saturday",
+        subject: "English",
+        start: "2026-10-31T20:00:00",
+        end: "2026-10-31T20:25:00",
+        zoom: "https://us05web.zoom.us/j/7882170092?pwd=bHlTaFJnUTE4THFSaHoycHVpZERWUT09"
+     },
+     {
+       id: 2 ,
+        name: "Jasmine's English Class",
+        instructor: "Teacher Angelo",
+        day: "Saturday",
+        subject: "English",
+        start: "2026-10-31T20:30:00",
+        end: "2026-10-31T21:00:00",
+        zoom: "https://us05web.zoom.us/j/7882170092?pwd=bHlTaFJnUTE4THFSaHoycHVpZERWUT09"
+      }
+    ];
+
+    // Update the live date and clock.
+    function updateClock() {
+      const now = new Date();
+
+      document.getElementById("live-date").textContent =
+        now.toLocaleDateString(undefined, {
+          weekday: "long",
+          month: "long",
+          day: "numeric",
+          year: "numeric"
+        });
+
+      document.getElementById("live-time").textContent =
+        now.toLocaleTimeString(undefined, {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit"
+        });
+
+      document.getElementById("year").textContent = now.getFullYear();
+    }
+
+    // Calculate class status using its scheduled start and end.
+    function getClassStatus(item, now = new Date()) {
+      const start = new Date(item.start);
+      const end = new Date(item.end);
+
+      if (Number.isNaN(start.getTime()) ||
+          Number.isNaN(end.getTime()) ||
+          end <= start) {
+        return {
+          label: "Check Schedule",
+          color: "bg-amber-100 text-amber-800"
+        };
+      }
+
+      if (now < start) {
+        return {
+          label: "Upcoming",
+          color: "bg-blue-100 text-blue-700"
+        };
+      }
+
+      if (now >= start && now < end) {
+        return {
+          label: "Live Now",
+          color: "bg-green-100 text-green-700"
+        };
+      }
+
+      return {
+        label: "Completed",
+        color: "bg-slate-100 text-slate-600"
+      };
+    }
+
+    // Render the schedule cards.
+    function renderClasses() {
+      const container = document.getElementById("class-list");
+      const emptyState = document.getElementById("empty-state");
+      const selectedDay = document.getElementById("filter-day").value;
+      const now = new Date();
+
+      const filteredClasses = classes.filter(item =>
+        selectedDay === "All" || item.day === selectedDay
+      );
+
+      container.innerHTML = "";
+
+      document.getElementById("class-count").textContent = classes.length;
+
+      const liveCount = classes.filter(item =>
+        getClassStatus(item, now).label === "Live Now"
+      ).length;
+
+      document.getElementById("live-count").textContent = liveCount;
+
+      emptyState.classList.toggle("hidden", filteredClasses.length > 0);
+
+      filteredClasses.forEach(item => {
+        const status = getClassStatus(item, now);
+        const start = new Date(item.start);
+        const end = new Date(item.end);
+
+        const validDates =
+          !Number.isNaN(start.getTime()) &&
+          !Number.isNaN(end.getTime()) &&
+          end > start;
+
+        const timeText = validDates
+          ? `${start.toLocaleTimeString([], {
+              hour: "numeric",
+              minute: "2-digit"
+            })} – ${end.toLocaleTimeString([], {
+              hour: "numeric",
+              minute: "2-digit"
+            })}`
+          : "Please confirm class time";
+
+        const dateText = validDates
+          ? start.toLocaleDateString([], {
+              month: "short",
+              day: "numeric",
+              year: "numeric"
+            })
+          : "Date not set";
+
+        // Create elements safely without inserting user text as HTML.
+        const card = document.createElement("article");
+        card.className =
+          "class-card bg-white rounded-2xl border border-slate-100 p-6 flex flex-col";
+
+        const top = document.createElement("div");
+        top.className = "flex items-start justify-between gap-3";
+
+        const icon = document.createElement("div");
+        icon.className =
+          "w-12 h-12 rounded-xl bg-indigo-50 flex items-center justify-center text-2xl shrink-0";
+        icon.textContent = "📖";
+
+        const statusBadge = document.createElement("span");
+        statusBadge.className =
+          `text-xs font-bold px-3 py-1.5 rounded-full ${status.color}`;
+        statusBadge.textContent = status.label;
+
+        top.append(icon, statusBadge);
+
+        const title = document.createElement("h3");
+        title.className = "text-xl font-extrabold mt-5";
+        title.textContent = item.name;
+
+        const subject = document.createElement("p");
+        subject.className = "text-sm text-indigo-600 font-semibold mt-1";
+        subject.textContent = item.subject;
+
+        const details = document.createElement("div");
+        details.className = "space-y-3 mt-5 text-sm text-slate-600";
+
+        const instructor = document.createElement("p");
+        instructor.textContent = `👩‍🏫 Instructor: ${item.instructor}`;
+
+        const day = document.createElement("p");
+        day.textContent = `📅 ${item.day}, ${dateText}`;
+
+        const time = document.createElement("p");
+        time.textContent = `🕒 ${timeText}`;
+
+        details.append(instructor, day, time);
+
+        const zoomButton = document.createElement("a");
+        const validZoom = /^https:\/\/zoom\.us(?:\/|$)/i.test(item.zoom);
+
+        zoomButton.href = validZoom ? item.zoom : "https://us05web.zoom.us/j/7882170092?pwd=bHlTaFJnUTE4THFSaHoycHVpZERWUT09";
+        zoomButton.target = "_blank";
+        zoomButton.rel = "noopener noreferrer";
+        zoomButton.className =
+          "zoom-btn mt-6 w-full flex justify-center items-center gap-2 rounded-xl px-4 py-3 font-bold text-white bg-indigo-600 hover:bg-indigo-700";
+
+        zoomButton.textContent = "Join Zoom Class ↗";
+
+        if (!validZoom || item.zoom === "https://zoom.us") {
+          zoomButton.title = "Replace this placeholder with your actual meeting link.";
+        }
+
+        card.append(top, title, subject, details, zoomButton);
+        container.appendChild(card);
+      });
+    }
+
+    // Filter classes when a day is selected.
+    document.getElementById("filter-day").addEventListener("change", renderClasses);
+
+    // Refresh statuses regularly so badges change automatically.
+    updateClock();
+    renderClasses();
+
+    setInterval(updateClock, 1000);
+    setInterval(renderClasses, 30000);
+  </script>
+
+</body>
+</html>
